@@ -1,8 +1,9 @@
 package maxminddb
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/gotestyourself/gotestyourself/assert"
 )
 
 func TestVerifyOnGoodDatabases(t *testing.T) {
@@ -31,8 +32,8 @@ func TestVerifyOnGoodDatabases(t *testing.T) {
 
 	for _, database := range databases {
 		reader, err := Open(database)
-		assert.Nil(t, err)
-		assert.Nil(t, reader.Verify(), "Received error (%v) when verifying %v", err, database)
+		assert.Check(t, err)
+		assert.Check(t, reader.Verify(), "Received error (%v) when verifying %v", err, database)
 	}
 }
 
@@ -45,9 +46,9 @@ func TestVerifyOnBrokenDatabases(t *testing.T) {
 
 	for _, database := range databases {
 		reader, err := Open(database)
-		assert.Nil(t, err)
-		assert.NotNil(t, reader.Verify(),
-			"Did not receive expected error when verifying %v", database,
-		)
+		assert.Check(t, err)
+		assert.Check(t, reader.Verify() != nil,
+			"Did not receive expected error when verifying %v", database)
+
 	}
 }
