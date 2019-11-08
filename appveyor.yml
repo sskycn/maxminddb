@@ -2,7 +2,7 @@ version: "{build}"
 
 os: Windows Server 2012 R2
 
-clone_folder: c:\gopath\src\github.com\oschwald\maxminddb-golang
+clone_folder: c:\gopath\src\github.com\sskycn\maxminddb
 
 environment:
   GOPATH: c:\gopath
